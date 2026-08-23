@@ -1,6 +1,3 @@
-
-# TODO: 3. connect users sheet with sheety
-# TODO: 4. fetch users emails from sheety
 # TODO: 5. set up emailing system
 # TODO: 6. create places_to_go sheet
 # TODO: 7. connect places sheet with sheety
