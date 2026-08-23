@@ -1,5 +1,4 @@
-# TODO: 1. create user sign up form
-# TODO: 2. create users data sheet
+
 # TODO: 3. connect users sheet with sheety
 # TODO: 4. fetch users emails from sheety
 # TODO: 5. set up emailing system
