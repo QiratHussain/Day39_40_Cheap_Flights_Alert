@@ -10,6 +10,7 @@ class SheetyData:
         self.sheety_username= os.getenv("SHEETY_USERNAME")
         self.sheety_password= os.getenv("SHEETY_PASSWORD")
         self.users_sheet_api= os.getenv("SHEETY_USERS_API")
+        self.places_sheet_api= os.getenv("SHEETY_PLACES_API")
         self.basic= HTTPBasicAuth(username=self.sheety_username, password=self.sheety_password)
 
     def get_users_emails(self):
@@ -18,7 +19,15 @@ class SheetyData:
         for data in range(len(self.emails_response)):
             user_email= self.emails_response[data]['email']
             self.emails_list.append(user_email)
-        print(self.emails_list)
+            return self.emails_list
+
+    def get_places_list(self):
+        self.places_list= []
+        self.places_response=requests.get(url= self.places_sheet_api,auth=self.basic).json()['flights']
+        for data in range(len(self.places_response)):
+            place= self.places_response[data]['places']
+            self.places_list.append(place)
+        print(self.places_list)
 
 sheet= SheetyData()
-sheet.get_users_emails()
+sheet.get_places_list()

@@ -14,6 +14,3 @@ class Notifier:
             connection.starttls()
             connection.login(user=self.my_email, password=self.my_password)
             connection.sendmail(from_addr=self.my_email, to_addrs=receiver,msg= f"Subject: Flight Alert!\n\n{mail_body} ")
-
-notify= Notifier()
-notify.send_email("ok", "testingcode4python@gmail.com")
