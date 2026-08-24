@@ -8,7 +8,3 @@ class IataFinder:
             if data['city'].lower()==city_name.lower():
                 iata_code=iata
                 return iata_code
-
-iatafinder= IataFinder()
-paris=iatafinder.get_iata_code('paris')
-print(paris)

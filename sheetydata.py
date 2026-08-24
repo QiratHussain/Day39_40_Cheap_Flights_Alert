@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import requests
 from requests.auth import HTTPBasicAuth
 
+
 load_dotenv()
 
 class SheetyData:
@@ -27,7 +28,8 @@ class SheetyData:
         for data in range(len(self.places_response)):
             place= self.places_response[data]['places']
             self.places_list.append(place)
-        print(self.places_list)
+        return self.places_list
 
-sheet= SheetyData()
-sheet.get_places_list()
+    def update_iata(self,iata, row_id):
+        request_body= {'flight':{"iataCodes":iata}}
+        self.update= requests.put(url=f"{self.places_sheet_api}/{row_id}",json= request_body,auth= self.basic)
