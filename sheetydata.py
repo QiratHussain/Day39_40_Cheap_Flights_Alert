@@ -33,3 +33,11 @@ class SheetyData:
     def update_iata(self,iata, row_id):
         request_body= {'flight':{"iataCodes":iata}}
         self.update= requests.put(url=f"{self.places_sheet_api}/{row_id}",json= request_body,auth= self.basic)
+
+    def get_desired_prices(self):
+        self.desired_prices_list=[]
+        self.prices_response=requests.get(url= self.places_sheet_api, auth= self.basic).json()['flights']
+        for number in range(len(self.prices_response)):
+            price= self.prices_response[number]['prices']
+            self.desired_prices_list.append(price)
+        return self.desired_prices_list
