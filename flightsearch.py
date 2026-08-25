@@ -19,5 +19,6 @@ class FlightSearcher:
         elif 'other_flights' in serp_response:
             flights_response= serp_response['other_flights']
             flight_price= flights_response[0]['price']
+            return flight_price
         else:
             return None
