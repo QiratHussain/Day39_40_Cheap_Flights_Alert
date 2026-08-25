@@ -1,4 +1,5 @@
 from sheetydata import SheetyData
+from mail import Notifier
 from flightdata import IataFinder
 from flightsearch import FlightSearcher
 from datetime import datetime
@@ -32,16 +33,20 @@ for code in iata_codes_list:
     price_searched= flight_searcher.search_flights(code,outbound_date, return_date)
     flights_prices.append(price_searched)
 
-# comparing the prices
+# managing receivers
+notifier= Notifier()
+receivers_list=sheety.get_users_emails()
+
+# comparing the prices and send email
 
 for row_number in range(len(cities_list)):
     place_selected= cities_list[row_number]
     cost_desired= desired_prices[row_number]
     price_selected= flights_prices[row_number]
     if price_selected is not None and price_selected <= cost_desired:
-        print('deal')
-        print(price_selected ,"<=",cost_desired )
-        print(place_selected)
+        for receiver_email in receivers_list:
+            notifier.send_email(f"Pack your luggage! There is a flight to {place_selected} for {price_selected} on {outbound_date} ",receiver_email)
+        
 
     
 
